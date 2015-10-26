@@ -1,74 +1,148 @@
 package com.example.gongmosample;
 
-import android.app.ListActivity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import java.text.Collator;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
+import com.example.gongmosample.managers.Manager;
+
+import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
-    private final static Comparator<Map<String, Object>> sDisplayNameComparator =
-            new Comparator<Map<String, Object>>() {
-                private final Collator collator = Collator.getInstance();
-
-                public int compare(Map<String, Object> map1, Map<String, Object> map2) {
-                    return collator.compare(map1.get("title"), map2.get("title"));
-                }
-            };
+    private ViewPager mViewPager;
+    private MyAdapter mAdapter;
+    private List<String> mTitles;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setListAdapter(new SimpleAdapter(this, getData(),
-                android.R.layout.simple_list_item_1, new String[] {
-                "title"
-        },
-                new int[] {
-                        android.R.id.text1
-                }));
-        getListView().setTextFilterEnabled(true);
+        // 초기화
+        init();
     }
 
-    protected List<Map<String, Object>> getData() {
-        List<Map<String, Object>> myData = new ArrayList<>();
+    private void init() {
+        setContentView(R.layout.activity_main);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        // 메뉴 추가 부분
-        addItem(myData, "ViewPager", ScreenSlideActivity.class);
-        // ----- 메뉴 추가 여기까지
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
 
-        // 이름 순 정렬
-        // Collections.sort(myData, sDisplayNameComparator);
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
-        return myData;
-    }
+        // 타이틀 목록
+        mTitles = Arrays.asList(getResources().getStringArray(R.array.nav_menu_array));
 
-    protected void addItem(List<Map<String, Object>> data, String name, Intent intent) {
-        Map<String, Object> temp = new HashMap<>();
-        temp.put("title", name);
-        temp.put("intent", intent);
-        data.add(temp);
-    }
+        mAdapter = new MyAdapter(getSupportFragmentManager());
 
-    protected void addItem(List<Map<String, Object>> data, String name, Class cls) {
-        this.addItem(data, name, new Intent(this, cls));
+        mViewPager = (ViewPager) findViewById(R.id.view_pager);
+        mViewPager.setAdapter(mAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                // 페이지가 변경 되면 상단 타이틀도 변경
+
+                toolbar.setTitle(mTitles.get(position));
+
+                // 네비게이션 드로워도 변경
+                navigationView.getMenu().getItem(position).setChecked(true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        // 첫 번째 아이템이 선택 된 것으로 표시
+        navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        Map<String, Object> map = (Map<String, Object>) l.getItemAtPosition(position);
-
-        Intent intent = (Intent) map.get("intent");
-        startActivity(intent);
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        String title = item.getTitle().toString();
+        int index = mTitles.indexOf(title);
+
+        mViewPager.setCurrentItem(index, true);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    // FragmentPagerAdapter
+    public static class MyAdapter extends FragmentPagerAdapter {
+
+        public MyAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return Manager.getInstance(position);
+        }
+
+        @Override
+        public int getCount() {
+            return Manager.FRAGMENTS.length;
+        }
+
+    }
+
 }

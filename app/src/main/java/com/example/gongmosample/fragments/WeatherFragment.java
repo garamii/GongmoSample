@@ -23,6 +23,7 @@ import com.squareup.okhttp.Response;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.XML;
 
 import java.io.IOException;
 import java.util.List;
@@ -35,7 +36,7 @@ public class WeatherFragment extends Fragment implements View.OnKeyListener {
     private static final String TAG = WeatherFragment.class.getSimpleName();
 
     // 날씨 예보 제공 URL
-    private static final String URL_FORECAST = "http://api.openweathermap.org/data/2.5/forecast?q=London,us&mode=json&appid=bd82977b86bf27fb59a04b61b657fb6f";
+    private static final String URL_FORECAST = "http://27.101.101.31/openapi-data/service/FestivalEvents/festivalEventsList?pageNo=1&numOfRows=1000&ServiceKey=czL0tLAf%2Fjn3knJuCqUKRaBjIX%2BOzhCiQVh5O%2B4QEgoMPguQitQUM%2B7wonJKyxbY9he2JzA%2BW7IwFd6VBvXUIQ%3D%3D";
 
     private ListView mWeatherListView;
     private WeatherAdapter mAdapter;
@@ -61,6 +62,7 @@ public class WeatherFragment extends Fragment implements View.OnKeyListener {
         Response response = client.newCall(request).execute();
         return response.body().string();
     }
+
 
     @Nullable
     @Override
@@ -111,9 +113,16 @@ public class WeatherFragment extends Fragment implements View.OnKeyListener {
             try {
                 // HTTP 에서 내용을 String 으로 받아 온다
                 String jsonString = getResponse(URL_FORECAST);
-                Log.d(TAG, jsonString);
-                JSONObject jsonObject = new JSONObject(jsonString);
-                JSONArray jsonArray = jsonObject.getJSONArray("list");
+
+
+               // Log.d(TAG, jsonObject1.toString());
+
+                JSONObject jsonObject = XML.toJSONObject(jsonString);
+//                Log.d(TAG, jsonObject.toString());
+                JSONObject items = jsonObject.getJSONObject("response").getJSONObject("body").getJSONObject("items");
+
+                Log.d(TAG, items.toString());
+                JSONArray jsonArray = items.getJSONArray("item");
 
 
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -124,6 +133,8 @@ public class WeatherFragment extends Fragment implements View.OnKeyListener {
                         ));
 
                 Log.d(TAG, weatherList.toString());
+
+
 
 //                // 받아온 JSON String 을 JSON Object로 변환한다
 //                JSONObject jsonObject = new JSONObject(jsonString);

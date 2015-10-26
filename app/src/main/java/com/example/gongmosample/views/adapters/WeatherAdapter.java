@@ -69,9 +69,11 @@ public class WeatherAdapter extends BaseAdapter {
         // Data 를 Layout 에 설정
         Weather weather = mList.get(position);
 
-        holder.timeTextView.setText(weather.time);
-        holder.tempTextView.setText(weather.temp + "℃");
-        holder.descTextView.setText(weather.description);
+        holder.timeTextView.setText(weather.CULTURE_NM);
+        holder.tempTextView.setText(weather.START_DT + "~");
+        holder.descTextView.setText(weather.END_DT);
+//        holder.tempTextView.setText(weather.temp + "℃");
+//        holder.descTextView.setText(weather.description);
 
         return convertView;
     }
