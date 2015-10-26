@@ -1,5 +1,6 @@
 package com.example.gongmosample.fragments;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,10 +11,12 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.example.gongmosample.R;
+import com.example.gongmosample.activities.DetailActivity;
 import com.example.gongmosample.models.Weather;
 import com.example.gongmosample.views.adapters.WeatherAdapter;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +34,7 @@ import java.util.List;
 /**
  * Created by junsuk on 2015. 10. 15..
  */
-public class WeatherFragment extends Fragment implements View.OnKeyListener {
+public class WeatherFragment extends Fragment implements View.OnKeyListener, AdapterView.OnItemClickListener {
 
     private static final String TAG = WeatherFragment.class.getSimpleName();
 
@@ -83,6 +86,7 @@ public class WeatherFragment extends Fragment implements View.OnKeyListener {
             }
         });
 
+        mWeatherListView.setOnItemClickListener(this);
         return view;
     }
 
@@ -96,6 +100,11 @@ public class WeatherFragment extends Fragment implements View.OnKeyListener {
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
         return false;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        startActivity(new Intent(getActivity(), DetailActivity.class));
     }
 
     class WeatherInfoLoadTask extends AsyncTask<Void, Void, List> {
@@ -175,4 +184,5 @@ public class WeatherFragment extends Fragment implements View.OnKeyListener {
             mProgressBar.setVisibility(View.GONE);
         }
     }
+
 }

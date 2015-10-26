@@ -6,17 +6,17 @@
     android:padding="8dp">
 
     <TextView
-        android:layout_weight="4"
         android:id="@+id/tv_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="4"
         android:text="10:10"
         android:textSize="40sp" />
 
     <LinearLayout
-        android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:paddingLeft="30dp">
 
@@ -25,15 +25,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="20도"
-            android:textColor="#0000ff"
-            android:textSize="20sp"
-            android:textStyle="italic" />
+            android:textColor="#6565ff"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tv_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="desc"
+            android:textColor="#5757ff"
             android:textSize="20sp" />
 
     </LinearLayout>
