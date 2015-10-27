@@ -17,7 +17,7 @@ import android.widget.ProgressBar;
 
 import com.example.gongmosample.R;
 import com.example.gongmosample.activities.DetailActivity;
-import com.example.gongmosample.models.Weather;
+import com.example.gongmosample.models.Festival;
 import com.example.gongmosample.views.adapters.WeatherAdapter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.OkHttpClient;
@@ -29,6 +29,7 @@ import org.json.JSONObject;
 import org.json.XML;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,6 +51,7 @@ public class WeatherFragment extends Fragment implements View.OnKeyListener, Ada
 
     // 클라이언트 오브젝트
     private OkHttpClient client = new OkHttpClient();
+    private ArrayList<Festival> mFestivalList;
 
     /**
      * url 로 부터 스트림을 읽어 String 으로 반환한다
@@ -104,7 +106,11 @@ public class WeatherFragment extends Fragment implements View.OnKeyListener, Ada
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        startActivity(new Intent(getActivity(), DetailActivity.class));
+        // 아이템 클릭
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putParcelableArrayListExtra("list", mFestivalList);
+        intent.putExtra("position", position);
+        startActivity(intent);
     }
 
     class WeatherInfoLoadTask extends AsyncTask<Void, Void, List> {
@@ -116,7 +122,7 @@ public class WeatherFragment extends Fragment implements View.OnKeyListener, Ada
 
         @Override
         protected List doInBackground(Void... params) { // 첫번째 인자
-            List<Weather> weatherList = null;
+            mFestivalList = null;
 
 
             try {
@@ -136,12 +142,12 @@ public class WeatherFragment extends Fragment implements View.OnKeyListener, Ada
 
                 ObjectMapper objectMapper = new ObjectMapper();
 
-                weatherList = objectMapper.readValue(jsonArray.toString(),
+                mFestivalList = objectMapper.readValue(jsonArray.toString(),
                         objectMapper.getTypeFactory().constructCollectionType(
-                                List.class, Weather.class
+                                List.class, Festival.class
                         ));
 
-                Log.d(TAG, weatherList.toString());
+                Log.d(TAG, mFestivalList.toString());
 
 
 
@@ -150,7 +156,7 @@ public class WeatherFragment extends Fragment implements View.OnKeyListener, Ada
 //                JSONArray jsonArray = jsonObject.getJSONArray("list");
 //
 //                // 날씨 정보 저장할 리스트
-//                weatherList = new ArrayList<>();
+//                festivalList = new ArrayList<>();
 //
 //                for (int i = 0; i < jsonArray.length(); i++) {
 //                    JSONObject object = jsonArray.getJSONObject(i);
@@ -161,14 +167,14 @@ public class WeatherFragment extends Fragment implements View.OnKeyListener, Ada
 //                    String description = object.getJSONArray("weather")
 //                            .getJSONObject(0).getString("description");
 //
-//                    weatherList.add(new Weather(time, temp, description));
+//                    festivalList.add(new Festival(time, temp, description));
 //                }
 
             } catch (Exception e) {
                 Log.e(TAG, e.getMessage());
             }
 
-            return weatherList;
+            return mFestivalList;
         }
 
         // publishUpdate로만 호출

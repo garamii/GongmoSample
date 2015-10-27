@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.gongmosample.R;
-import com.example.gongmosample.models.Weather;
+import com.example.gongmosample.models.Festival;
 
 import java.util.List;
 
@@ -19,10 +19,10 @@ import java.util.List;
 public class WeatherAdapter extends BaseAdapter {
 
     private static final String TAG = WeatherAdapter.class.getSimpleName();
-    private List<Weather> mList;
+    private List<Festival> mList;
     private Context mContext;
 
-    public WeatherAdapter(Context context, List<Weather> data) {
+    public WeatherAdapter(Context context, List<Festival> data) {
         mContext = context;
         mList = data;
     }
@@ -67,13 +67,13 @@ public class WeatherAdapter extends BaseAdapter {
         }
 
         // Data 를 Layout 에 설정
-        Weather weather = mList.get(position);
+        Festival festival = mList.get(position);
 
-        holder.timeTextView.setText(weather.CULTURE_NM);
-        holder.tempTextView.setText(weather.START_DT + "~");
-        holder.descTextView.setText(weather.END_DT);
-//        holder.tempTextView.setText(weather.temp + "℃");
-//        holder.descTextView.setText(weather.description);
+        holder.timeTextView.setText(festival.CULTURE_NM);
+        holder.tempTextView.setText(festival.START_DT + "~");
+        holder.descTextView.setText(festival.END_DT);
+//        holder.tempTextView.setText(festival.temp + "℃");
+//        holder.descTextView.setText(festival.description);
 
         return convertView;
     }
