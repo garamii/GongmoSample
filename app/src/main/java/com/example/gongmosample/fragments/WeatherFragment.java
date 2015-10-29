@@ -29,7 +29,10 @@ import org.json.JSONObject;
 import org.json.XML;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -146,6 +149,35 @@ public class WeatherFragment extends Fragment implements View.OnKeyListener, Ada
                         objectMapper.getTypeFactory().constructCollectionType(
                                 List.class, Festival.class
                         ));
+
+                // 정렬
+                Collections.sort(mFestivalList, new Comparator<Festival>() {
+                    @Override
+                    public int compare(Festival lhs, Festival rhs) {
+                        if (lhs.END_DT.compareTo(rhs.END_DT) > 0) {
+                            return -1;
+                        } else if (lhs.END_DT.compareTo(rhs.END_DT) < 0) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    }
+                });
+
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                String today = format.format(System.currentTimeMillis());
+
+                Log.d(TAG, today);
+
+                ArrayList<Festival> list = new ArrayList<>();
+
+                for (int i = 0; i < mFestivalList.size(); i++) {
+                    Festival festival = mFestivalList.get(i);
+                    if (festival.END_DT.compareTo(today) > 0) {
+                        list.add(festival);
+                    }
+                }
+                mFestivalList = list;
 
                 Log.d(TAG, mFestivalList.toString());
 
