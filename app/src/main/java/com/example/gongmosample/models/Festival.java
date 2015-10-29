@@ -47,6 +47,9 @@ public class Festival implements Parcelable {
     // 관람 연령
     public String VIEW_AGE;
 
+    //썸네일 이미지
+    public String THUMB_IMAGE;
+
 
     @Override
     public int describeContents() {
@@ -67,6 +70,7 @@ public class Festival implements Parcelable {
         dest.writeString(this.HOMEPAGE_URL);
         dest.writeString(this.TICKET_PRICE);
         dest.writeString(this.VIEW_AGE);
+        dest.writeString(this.THUMB_IMAGE);
     }
 
     public Festival() {
@@ -85,6 +89,7 @@ public class Festival implements Parcelable {
         this.HOMEPAGE_URL = in.readString();
         this.TICKET_PRICE = in.readString();
         this.VIEW_AGE = in.readString();
+        this.THUMB_IMAGE = in.readString();
     }
 
     public static final Parcelable.Creator<Festival> CREATOR = new Parcelable.Creator<Festival>() {

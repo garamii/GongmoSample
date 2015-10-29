@@ -38,9 +38,9 @@ import java.util.List;
 /**
  * Created by junsuk on 2015. 10. 15..
  */
-public class WeatherFragment extends Fragment implements View.OnKeyListener, AdapterView.OnItemClickListener {
+public class FestivalFragment extends Fragment implements View.OnKeyListener, AdapterView.OnItemClickListener {
 
-    private static final String TAG = WeatherFragment.class.getSimpleName();
+    private static final String TAG = FestivalFragment.class.getSimpleName();
 
     // 날씨 예보 제공 URL
     private static final String URL_FORECAST = "http://27.101.101.31/openapi-data/service/FestivalEvents/festivalEventsList?pageNo=1&numOfRows=1000&ServiceKey=czL0tLAf%2Fjn3knJuCqUKRaBjIX%2BOzhCiQVh5O%2B4QEgoMPguQitQUM%2B7wonJKyxbY9he2JzA%2BW7IwFd6VBvXUIQ%3D%3D";

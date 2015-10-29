@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import com.example.gongmosample.fragments.ExpandingListViewFragment;
 import com.example.gongmosample.fragments.ItemFragment;
 import com.example.gongmosample.fragments.LoadPictureFragment;
-import com.example.gongmosample.fragments.WeatherFragment;
+import com.example.gongmosample.fragments.FestivalFragment;
 
 /**
  * Created by junsuk on 2015. 10. 15..
@@ -19,7 +19,7 @@ public class Manager {
     // TODO: activity_main_drawer.xml 에 타이틀명 지정
     public static Class FRAGMENTS[] = {
             ItemFragment.class,
-            WeatherFragment.class,
+            FestivalFragment.class,
             LoadPictureFragment.class,
             ExpandingListViewFragment.class
     };
