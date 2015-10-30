@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gongmosample.R;
@@ -21,6 +22,7 @@ public class FestivalDetailFragment extends Fragment {
     private static final String ARG_FESTIVAL = "festival";
 
     private Festival mFestival;
+    private ImageView imageView;
 
     public FestivalDetailFragment() {
         // Required empty public constructor
@@ -37,10 +39,13 @@ public class FestivalDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mFestival = getArguments().getParcelable(ARG_FESTIVAL);
         }
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,7 +53,8 @@ public class FestivalDetailFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_festival_detail, container, false);
         //썸네일 이미지 http://culture.suwon.go.kr/common-upload +
-        ((TextView)view.findViewById(R.id.CULTURE_NM)).setText      (" 행사명　　 　: " + mFestival.CULTURE_NM);
+       // ((ImageView)view.findViewById(R.id.THUMB_IMAGE)).setImageBitmap();
+        ((TextView)view.findViewById(R.id.CULTURE_NM)).setText(" 행사명　　 　: " + mFestival.CULTURE_NM);
         ((TextView)view.findViewById(R.id.START_DT)).setText        (" 행사 시작일자 : " +mFestival.START_DT);
         ((TextView)view.findViewById(R.id.END_DT)).setText          (" 행사 종료일자 : " + mFestival.END_DT);
         ((TextView)view.findViewById(R.id.START_TIME)).setText      (" 행사 시작시간 : "+ mFestival.START_TIME);
