@@ -8,8 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import com.android.volley.toolbox.Volley;
 import com.example.gongmosample.R;
 import com.example.gongmosample.models.Festival;
+import com.example.gongmosample.volley.LruBitmapCache;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +28,10 @@ public class FestivalDetailFragment extends Fragment {
 
     private Festival mFestival;
     private ImageView imageView;
+
+    // 이미지 가져오는 준비
+    private RequestQueue mQueue;
+    private ImageLoader mImageLoader;
 
     public FestivalDetailFragment() {
         // Required empty public constructor
@@ -53,7 +62,11 @@ public class FestivalDetailFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_festival_detail, container, false);
         //썸네일 이미지 http://culture.suwon.go.kr/common-upload +
-       // ((ImageView)view.findViewById(R.id.THUMB_IMAGE)).setImageBitmap();
+
+        mQueue = Volley.newRequestQueue(getActivity());
+        mImageLoader = new ImageLoader(mQueue, new LruBitmapCache());
+
+        ((NetworkImageView) view.findViewById(R.id.THUMB_IMAGE)).setImageUrl("http://culture.suwon.go.kr/common-upload" + mFestival.THUMB_IMAGE, mImageLoader);
         ((TextView)view.findViewById(R.id.CULTURE_NM)).setText(" 행사명　　 　: " + mFestival.CULTURE_NM);
         ((TextView)view.findViewById(R.id.START_DT)).setText        (" 행사 시작일자 : " +mFestival.START_DT);
         ((TextView)view.findViewById(R.id.END_DT)).setText          (" 행사 종료일자 : " + mFestival.END_DT);
@@ -66,6 +79,7 @@ public class FestivalDetailFragment extends Fragment {
         ((TextView)view.findViewById(R.id.HOMEPAGE_URL)).setText    (" 홈페이지　　  : "+ mFestival.HOMEPAGE_URL);
         ((TextView)view.findViewById(R.id.TICKET_PRICE)).setText    (" 티켓 가격　　 : " +mFestival.TICKET_PRICE);
         ((TextView)view.findViewById(R.id.VIEW_AGE)).setText        (" 행사 관람연령 : " +mFestival.VIEW_AGE);
+
         return view;
     }
 

@@ -44,4 +44,7 @@ dependencies {
 
     // CardView
     compile 'com.android.support:cardview-v7:23.0.1'
+
+    // 네트워크 이미지 가져오는 라이브러리
+    compile 'com.mcxiaoke.volley:library:1.0.19'
 }
