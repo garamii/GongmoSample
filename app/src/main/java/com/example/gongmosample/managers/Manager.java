@@ -2,10 +2,8 @@ package com.example.gongmosample.managers;
 
 import android.support.v4.app.Fragment;
 
-import com.example.gongmosample.fragments.ExpandingListViewFragment;
-import com.example.gongmosample.fragments.ItemFragment;
-import com.example.gongmosample.fragments.LoadPictureFragment;
 import com.example.gongmosample.fragments.FestivalFragment;
+import com.example.gongmosample.fragments.ItemFragment;
 
 /**
  * Created by junsuk on 2015. 10. 15..
@@ -20,8 +18,6 @@ public class Manager {
     public static Class FRAGMENTS[] = {
             ItemFragment.class,
             FestivalFragment.class,
-            LoadPictureFragment.class,
-            ExpandingListViewFragment.class
     };
 
     private Manager() {

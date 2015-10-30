@@ -70,8 +70,8 @@ public class WeatherAdapter extends BaseAdapter {
         Festival festival = mList.get(position);
 
         holder.timeTextView.setText(festival.CULTURE_NM);
-        holder.tempTextView.setText(festival.START_DT + " ~");
-        holder.descTextView.setText(festival.END_DT +"   ");
+        holder.tempTextView.setText(festival.START_DT + " ~  ");
+        holder.descTextView.setText(festival.END_DT);
 
 
         return convertView;
