@@ -73,8 +73,6 @@ public class FestivalDetailFragment extends Fragment {
         ((TextView)view.findViewById(R.id.START_TIME)).setText      (" 행사 시작시간 : "+ mFestival.START_TIME);
         ((TextView)view.findViewById(R.id.END_TIME)).setText        (" 행사 종료시간 : "+ mFestival.END_TIME);
         ((TextView)view.findViewById(R.id.CTR_LOCATION)).setText    (" 행사장 주소　 : "+ mFestival.CTR_LOCATION);
-        ((TextView)view.findViewById(R.id.CTR_LOCATION_X)).setText  (" 행사장 위도　 : " + mFestival.CTR_LOCATION_X);
-        ((TextView)view.findViewById(R.id.CTR_LOCATION_Y)).setText  (" 행사장 경도　 : " + mFestival.CTR_LOCATION_Y);
         ((TextView)view.findViewById(R.id.TEL_NO)).setText          (" 행사 문의전화 : " + mFestival.TEL_NO);
         ((TextView)view.findViewById(R.id.HOMEPAGE_URL)).setText    (" 홈페이지　　  : "+ mFestival.HOMEPAGE_URL);
         ((TextView)view.findViewById(R.id.TICKET_PRICE)).setText    (" 티켓 가격　　 : " +mFestival.TICKET_PRICE);

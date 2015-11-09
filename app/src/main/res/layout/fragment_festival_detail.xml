@@ -8,7 +8,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,84 +26,90 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="행사명"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:id="@+id/START_DT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="시작일자"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:id="@+id/END_DT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="종료일자"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:id="@+id/START_TIME"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="시작시간"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:id="@+id/END_TIME"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="종료시간"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:id="@+id/CTR_LOCATION"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="행사장주소"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/CTR_LOCATION_X"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="위도"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/CTR_LOCATION_Y"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="경도"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:id="@+id/TEL_NO"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전화번호"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:id="@+id/HOMEPAGE_URL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="홈페이지주소"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:id="@+id/TICKET_PRICE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="티켓가격"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:paddingLeft="10dp"/>
 
             <TextView
                 android:id="@+id/VIEW_AGE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="관람연령"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:paddingLeft="10dp"/>
 
         </LinearLayout>
 
