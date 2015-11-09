@@ -1,5 +1,7 @@
 package com.example.gongmosample;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -109,10 +111,17 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        String title = item.getTitle().toString();
-        int index = mTitles.indexOf(title);
+        if (item.getItemId() == R.id.homepage) {
+            // 수원시 홈페이지 이동
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.suwon.go.kr"));
+            startActivity(intent);
 
-        mViewPager.setCurrentItem(index, true);
+        } else {
+            String title = item.getTitle().toString();
+            int index = mTitles.indexOf(title);
+
+            mViewPager.setCurrentItem(index, true);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
