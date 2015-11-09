@@ -116,7 +116,12 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.suwon.go.kr"));
             startActivity(intent);
 
-        } else {
+        }else if(item.getItemId() == R.id.end_event) {
+            // 수원시 홈페이지 이동
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://culture.suwon.go.kr/culture/endCultureList.do"));
+            startActivity(intent);
+
+        }else {
             String title = item.getTitle().toString();
             int index = mTitles.indexOf(title);
 

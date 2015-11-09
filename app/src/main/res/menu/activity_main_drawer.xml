@@ -8,6 +8,10 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/nav_menu_title_2" />
         <item
+            android:id="@+id/end_event"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="지난 행사목록" />
+        <item
             android:id="@+id/homepage"
             android:icon="@drawable/ic_menu_gallery"
             android:title="수원시 홈페이지" />

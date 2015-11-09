@@ -53,7 +53,8 @@ public class WeatherAdapter extends BaseAdapter {
             holder = new ViewHolder();
 
             // 처음 로드
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.fragment_item_weather, parent,
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.fragment_item_weather,
+                    parent,
                     false);
 
             holder.timeTextView = (TextView) convertView.findViewById(R.id.tv_time);
@@ -72,7 +73,6 @@ public class WeatherAdapter extends BaseAdapter {
         holder.timeTextView.setText(festival.CULTURE_NM);
         holder.tempTextView.setText(festival.START_DT + " ~  ");
         holder.descTextView.setText(festival.END_DT);
-
 
         return convertView;
     }
