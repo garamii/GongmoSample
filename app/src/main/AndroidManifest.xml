@@ -10,12 +10,12 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="행사 설명"
+        android:label="수원시 행사 축제"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="수원시"
+            android:label="수원시 행사 축제"
             android:theme="@style/AppTheme.NoActionBar" >
 
         </activity>

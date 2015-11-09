@@ -29,7 +29,7 @@ public class WeatherAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mList.size();
+        return 0;
     }
 
     @Override

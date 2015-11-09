@@ -20,10 +20,12 @@
             <com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/THUMB_IMAGE"
                 android:layout_width="match_parent"
-                android:layout_height="400dp" />
+                android:layout_height="400dp"
+                android:paddingTop="10dp"/>
 
 
             <LinearLayout
+                android:paddingTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
