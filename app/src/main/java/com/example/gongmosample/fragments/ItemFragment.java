@@ -1,16 +1,17 @@
 package com.example.gongmosample.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.widget.ImageView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.example.gongmosample.R;
 
 public class ItemFragment extends Fragment {
 
-    ImageView mImageView;
 
-    public static ItemFragment newInstance() {
-        return new ItemFragment();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,13 @@ public class ItemFragment extends Fragment {
 
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        View view = inflater.inflate(R.layout.fragment_picture, container, false);
 
+        return view;
+
+    }
 }
