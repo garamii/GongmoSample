@@ -154,9 +154,9 @@ public class FestivalFragment extends Fragment implements View.OnKeyListener, Ad
                 Collections.sort(mFestivalList, new Comparator<Festival>() {
                     @Override
                     public int compare(Festival lhs, Festival rhs) {
-                        if (lhs.END_DT.compareTo(rhs.END_DT) > 0) {
+                        if (lhs.START_DT.compareTo(rhs.START_DT) > 0) {
                             return -1;
-                        } else if (lhs.END_DT.compareTo(rhs.END_DT) < 0) {
+                        } else if (lhs.START_DT.compareTo(rhs.START_DT) < 0) {
                             return 1;
                         } else {
                             return 0;
