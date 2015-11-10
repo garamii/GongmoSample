@@ -20,7 +20,7 @@
             <com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/THUMB_IMAGE"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="550dp"
                 android:paddingTop="10dp"/>
 
 
