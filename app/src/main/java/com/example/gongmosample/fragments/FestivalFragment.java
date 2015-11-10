@@ -18,7 +18,7 @@ import android.widget.ProgressBar;
 import com.example.gongmosample.R;
 import com.example.gongmosample.activities.DetailActivity;
 import com.example.gongmosample.models.Festival;
-import com.example.gongmosample.views.adapters.WeatherAdapter;
+import com.example.gongmosample.views.adapters.FestivalAdapter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -46,7 +46,7 @@ public class FestivalFragment extends Fragment implements View.OnKeyListener, Ad
     private static final String URL_FORECAST = "http://27.101.101.31/openapi-data/service/FestivalEvents/festivalEventsList?pageNo=1&numOfRows=1000&ServiceKey=czL0tLAf%2Fjn3knJuCqUKRaBjIX%2BOzhCiQVh5O%2B4QEgoMPguQitQUM%2B7wonJKyxbY9he2JzA%2BW7IwFd6VBvXUIQ%3D%3D";
 
     private ListView mWeatherListView;
-    private WeatherAdapter mAdapter;
+    private FestivalAdapter mAdapter;
 
     private ProgressBar mProgressBar;
 
@@ -155,9 +155,9 @@ public class FestivalFragment extends Fragment implements View.OnKeyListener, Ad
                     @Override
                     public int compare(Festival lhs, Festival rhs) {
                         if (lhs.START_DT.compareTo(rhs.START_DT) > 0) {
-                            return -1;
-                        } else if (lhs.START_DT.compareTo(rhs.START_DT) < 0) {
                             return 1;
+                        } else if (lhs.START_DT.compareTo(rhs.START_DT) < 0) {
+                            return -1;
                         } else {
                             return 0;
                         }
@@ -217,7 +217,7 @@ public class FestivalFragment extends Fragment implements View.OnKeyListener, Ad
 
         @Override
         protected void onPostExecute(List list) { // 세번째 인자
-            mAdapter = new WeatherAdapter(getActivity(), list);
+            mAdapter = new FestivalAdapter(getActivity(), list);
             mWeatherListView.setAdapter(mAdapter);
             mProgressBar.setVisibility(View.GONE);
         }

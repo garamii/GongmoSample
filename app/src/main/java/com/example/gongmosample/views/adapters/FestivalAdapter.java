@@ -16,20 +16,21 @@ import java.util.List;
 /**
  * Created by junsuk on 15. 9. 8.. 날씨 표시용 어댑터
  */
-public class WeatherAdapter extends BaseAdapter {
+public class FestivalAdapter extends BaseAdapter {
 
-    private static final String TAG = WeatherAdapter.class.getSimpleName();
+    private static final String TAG = FestivalAdapter.class.getSimpleName();
     private List<Festival> mList;
     private Context mContext;
 
-    public WeatherAdapter(Context context, List<Festival> data) {
+    public FestivalAdapter(Context context, List<Festival> data) {
         mContext = context;
         mList = data;
     }
 
     @Override
     public int getCount() {
-        return 0;
+
+        return mList.size();
     }
 
     @Override
